@@ -1,0 +1,39 @@
+:root {
+    --clr-base: hsl(0, 1%, 10%);
+
+    --clr-black: hsl(0, 5%, 10%);
+    --clr-white: hsl(220, 30%, 96%);
+
+    --clr-gold-ltr: hsl(51, 100%, 70%);
+    --clr-gold-lt: hsl(51, 100%, 60%);
+    --clr-gold: hsl(51, 100%, 50%);
+    --clr-gold-dk: hsl(51, 100%, 40%);
+    --clr-gold-dkr: hsl(51, 100%, 30%);
+
+    --clr-silver-ltr: hsl(0, 0%, 95%);
+    --clr-silver-lt: hsl(0, 0%, 85%);
+    --clr-silver: hsl(0, 0%, 75%);
+    --clr-silver-dk: hsl(0, 0%, 65%);
+    --clr-silver-dkr: hsl(0, 0%, 55%);
+
+    --clr-blue-ltst: hsl(237, 100%, 80%);
+    --clr-blue-ltr: hsl(237, 100%, 70%);
+    --clr-blue-lt: hsl(237, 100%, 60%);
+    --clr-blue: hsl(237, 100%, 50%);
+    --clr-blue-dk: hsl(237, 100%, 40%);
+    --clr-blue-dkr: hsl(237, 100%, 30%);
+    --clr-blue-dkst: hsl(237, 100%, 20%);
+}
+
+body {
+    background-color: var(--clr-base);
+    color: var(--clr-white);
+}
+
+a {
+    color: var(--clr-blue-ltst);
+}
+
+a:hover {
+    color: var(--clr-blue-lt);
+}
