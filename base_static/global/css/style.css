@@ -172,11 +172,14 @@ header {
   display: flex;
   justify-content: space-between;
   align-items: center;
+}
+
+.header.section-wrapper.base{
   padding: var(--spacing-micro) var(--spacing-bgst);
 }
 
 .logo img {
-  height: 50px;
+  height: var(--spacing-bgr);
 }
 
 nav ul {
@@ -196,6 +199,10 @@ nav li {
 .blog-title,
 .blog-description {
   margin: 0;
+}
+
+.blog-description {
+  font-style: italic;
 }
 
 /* Sections */
