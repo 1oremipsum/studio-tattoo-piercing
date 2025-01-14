@@ -2,6 +2,7 @@ from django.contrib.auth.models import User
 from django.db import models
 
 from utils.randomization.models import slugify_new
+from utils.resizing.images import resize_image
 
 class Tag(models.Model):
     class Meta:
@@ -65,7 +66,7 @@ class Post(models.Model):
     )
     content = models.TextField(verbose_name='Conteúdo')
     cover = models.ImageField(
-        upload_to='posts/%Y/%m/', blank=True, 
+        upload_to='data/posts/%Y/%m/', blank=True, 
         default='', verbose_name='Imagem de Capa'
     )
     cover_in_post_content = models.BooleanField(
@@ -113,4 +114,16 @@ class Post(models.Model):
     def save(self, *args, **kwargs):
         if not self.slug:
             self.slug = slugify_new(self.title, 4)
-        return super().save(*args, **kwargs)
+
+        current_cover_name = str(self.cover.name)
+        super_save = super().save(*args, **kwargs)
+        cover_changed = False
+    
+        if self.cover:
+            cover_changed = current_cover_name != self.cover.name
+        
+        if cover_changed:
+            # 900:Maximum width for cover, 70:quality 70%
+            resize_image(self.cover, 900, True, 70)
+
+        return super_save
