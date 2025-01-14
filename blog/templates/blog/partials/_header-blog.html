@@ -1,6 +1,6 @@
 <header class="header section-wrapper blog">
     <div class="section-content-wide">
-        <div class="section-gap">
+        <div class="section-gap-sm">
 
             <h3 class="blog-title center pb-smlst">
                 <a class="blog-link" href="/"> {{ blog_setup.title }} </a>
@@ -29,7 +29,7 @@
             {% if blog_setup.show_menu %}
             <nav class="menu">
                 <ul class="menu-items">
-                    {% for link in blog_setup.menulink_set.all %}
+                    {% for link in blog_setup.menu.all %}
                     <li class="menu-item">
                         {% if link.new_tab %}
                         <a class="menu-link" href="{{ link.url_or_path }}" target="_blank">

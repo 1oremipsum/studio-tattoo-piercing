@@ -215,8 +215,16 @@ nav li {
   margin-inline: auto;
 }
 
+.section-content-narrow-bgst{
+  margin-inline: 10rem;
+}
+
 .section-gap {
   padding: var(--spacing-base);
+}
+
+.section-gap-sm {
+  padding: var(--spacing-smlst);
 }
 
 /* Post-card */
