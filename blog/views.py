@@ -1,8 +1,10 @@
 from django.core.paginator import Paginator
-from django.shortcuts import render
 from sitesetup.models import SiteSetup
+from blog.models import Post
 
-posts = list(range(1000))
+from django.shortcuts import render
+
+PER_PAGE = 9
 
 def index(request):
     context = {
@@ -12,9 +14,11 @@ def index(request):
 
 
 def home_blog(request):
-    paginator = Paginator(posts, 9)
-    page_number = request.GET.get("page")
-    page_obj = paginator.get_page(page_number)
+    posts =  (Post.objects
+              .filter(is_published=True)
+              .order_by('-pk'))
+    
+    page_obj = pagination(request, posts)
 
     title = SiteSetup.objects.all().first().title
 
@@ -31,13 +35,17 @@ def gallery(request):
 
 
 def post(request):
-    paginator = Paginator(posts, 9)
-    page_number = request.GET.get("page")
-    page_obj = paginator.get_page(page_number)
 
     context = {
         'site_title': 'Studio Tattoo & Piercing | Post',
-        'page_obj': page_obj
+        # 'page_obj': page_obj
     }
 
     return render(request, 'blog/pages/post.html', context)
+
+
+def pagination(request, objs):
+    paginator = Paginator(objs, PER_PAGE)
+    page_number = request.GET.get("page")
+    page_obj = paginator.get_page(page_number)
+    return page_obj
