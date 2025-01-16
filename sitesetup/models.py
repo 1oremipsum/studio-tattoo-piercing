@@ -33,7 +33,7 @@ class SiteSetup(models.Model):
     show_pagination = models.BooleanField(default=True)    
     show_footer = models.BooleanField(default=True)
     favicon = models.ImageField(
-        upload_to='data/assets/favicon/%Y/%m/',
+        upload_to='assets/favicon/%Y/%m/',
         blank=True, default='', validators=[validate_png]
     )
 

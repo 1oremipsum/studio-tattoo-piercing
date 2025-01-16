@@ -1,5 +1,6 @@
 from django.contrib import admin
 from blog.models import Tag, Category, Post
+from django_summernote.admin import SummernoteModelAdmin
 
 @admin.register(Tag)
 class TagAdmin(admin.ModelAdmin):
@@ -24,7 +25,8 @@ class CategoryAdmin(admin.ModelAdmin):
     }
 
 @admin.register(Post)
-class PostAdmin(admin.ModelAdmin):
+class PostAdmin(SummernoteModelAdmin):
+    summernote_fields = ('content',)
     list_display = 'id', 'title', 'is_published',  'created_by',
     list_display_links = 'title',
     search_fields = 'id', 'slug', 'title', 'excerpt', 'content',

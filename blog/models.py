@@ -1,8 +1,32 @@
-from django.contrib.auth.models import User
 from django.db import models
+from django.contrib.auth.models import User
+from django_summernote.models import AbstractAttachment
 
 from utils.randomization.models import slugify_new
 from utils.resizing.images import resize_image
+
+class PostAttachment(AbstractAttachment):
+    class Meta:
+        verbose_name = 'Anexo do post'
+        verbose_name_plural = 'Anexos dos posts'
+
+    def save(self, *args, **kwargs):
+        if not self.name:
+            self.name = self.file.name
+
+        current_file_name = str(self.file.name)
+        super_save = super().save(*args, **kwargs)
+        file_changed = False
+    
+        if self.file:
+            file_changed = current_file_name != self.file.name
+        
+        if file_changed:
+            # 900=Maximum width for file, 70=quality 70%
+            resize_image(self.file, 900, True, 70)
+
+        return super_save
+
 
 class Tag(models.Model):
     class Meta:
@@ -24,7 +48,7 @@ class Tag(models.Model):
     def __str__(self) -> str:
         return self.name
     
-    
+
 class Category(models.Model):
     class Meta:
         verbose_name = 'Categoria'
@@ -66,7 +90,7 @@ class Post(models.Model):
     )
     content = models.TextField(verbose_name='Conteúdo')
     cover = models.ImageField(
-        upload_to='data/posts/%Y/%m/', blank=True, 
+        upload_to='posts/%Y/%m/', blank=True, 
         default='', verbose_name='Imagem de Capa'
     )
     cover_in_post_content = models.BooleanField(
