@@ -70,11 +70,22 @@ class Category(models.Model):
         return self.name
 
 
+class PostManager(models.Manager):
+    def get_published(self):
+        return self.filter(is_published=True)
+
+
+    def get_order_desc(self):
+        return self.order_by('-pk')
+
+
 class Post(models.Model):
     class Meta:
         verbose_name = 'Post'
         verbose_name_plural = 'Posts'
     
+    objects = PostManager()
+
     title = models.CharField(max_length=65, verbose_name='Título')
     slug = models.SlugField(
         unique=True, default="", verbose_name='Slug',
