@@ -7,11 +7,15 @@
         <main class="main-content section-wrapper">
             <div class="section-content-wide">
                 <div class="section-gap">
-                    <div class="card-grid">
-                        {% for post in page_obj %}
+                    {% if page_obj %}
+                        <div class="card-grid">
+                            {% for post in page_obj %}
                             {% include 'blog/partials/_post-card.html' with i=forloop.counter0 %}
-                        {% endfor %}
-                    </div>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {% include "global/partials/_not_found.html" %}
+                    {% endif %}
                 </div>
             </div>
         </main>

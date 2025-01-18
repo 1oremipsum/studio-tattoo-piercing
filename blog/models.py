@@ -4,6 +4,7 @@ from django_summernote.models import AbstractAttachment
 
 from utils.randomization.models import slugify_new
 from utils.resizing.images import resize_image
+from django.urls import reverse
 
 class PostAttachment(AbstractAttachment):
     class Meta:
@@ -144,6 +145,12 @@ class Post(models.Model):
 
     def __str__(self):
         return self.title
+
+
+    def get_absolute_url(self):
+        if not self.is_published:
+            return reverse('blog:home_blog')
+        return reverse('blog:post', args=(self.slug,))
     
 
     def save(self, *args, **kwargs):
