@@ -33,7 +33,7 @@
                 <div class="post-meta-item">
                     <i class="fa-solid fa-calendar-days"></i>
                     <span>
-                        {{ post.created_at }}
+                    {{ post.created_at | date:'d/m/Y \à\s H:i' }}
                     </span>
                 </div>
                 {% if  post.category.pk %}
@@ -49,13 +49,13 @@
             </div>
 
             <p class="single-post-excerpt pb-base center">
-                {{ post.excerpt }}
+                {{ post.excerpt | safe }}
             </p>
 
             <div class="separator"></div>
 
             <div class="single-post-content">
-                {% include 'blog/partials/_temp.html' %}
+                {{ post.content | safe }}
 
                 <div class="post-tags">
                     <span>Tags: </span>
