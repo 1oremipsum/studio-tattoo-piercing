@@ -1,10 +1,21 @@
+from django.contrib.auth.models import User
 from sitesetup.models import SiteSetup
+from django.http import Http404
 from django.db.models import Q
 from blog.models import Post
 
 from utils.pagination.model import pagination
 from django.shortcuts import render
 
+
+def blog_title():
+    return  SiteSetup.objects.all().first().title
+
+
+def get_pots():
+    return Post.objects.get_published()
+
+# views
 
 def index(request):
     context = {
@@ -14,12 +25,10 @@ def index(request):
 
 
 def home_blog(request):
-    posts =  Post.objects.get_published()
-    page_obj = pagination(request, posts)
-    title = SiteSetup.objects.all().first().title
+    page_obj = pagination(request, get_pots().order_by('-created_at'))
 
     context = {
-        'site_title': title,
+        'site_title': blog_title,
         'page_obj': page_obj
     }
 
@@ -27,12 +36,21 @@ def home_blog(request):
 
 
 def created_by(request, author_id):
-    posts =  Post.objects.get_published().filter(created_by__pk=author_id)
+    posts = get_pots().filter(created_by__pk=author_id).order_by('-created_at')
     page_obj = pagination(request, posts)
-    title = SiteSetup.objects.all().first().title
+
+    user = User.objects.filter(pk=author_id).first()
+
+    if user is None:
+        raise Http404()
+
+    user_full_name = user.username
+
+    if user.first_name:
+        user_full_name = f"{user.first_name} {user.last_name}"
 
     context = {
-        'site_title': title,
+        'site_title': f"Posts de {user_full_name} - {blog_title()}",
         'page_obj': page_obj
     }
 
@@ -40,12 +58,14 @@ def created_by(request, author_id):
 
 
 def category(request, slug):
-    posts =  Post.objects.get_published().filter(category__slug=slug)
+    posts = get_pots().filter(category__slug=slug).order_by('-created_at')
     page_obj = pagination(request, posts)
-    title = SiteSetup.objects.all().first().title
+
+    if len(posts) == 0:
+        raise Http404()
 
     context = {
-        'site_title': title,
+        'site_title': f"Posts da Categoria {page_obj[0].category.name} - {blog_title()}",
         'page_obj': page_obj
     }
 
@@ -53,12 +73,14 @@ def category(request, slug):
 
 
 def tag(request, slug):
-    posts =  Post.objects.get_published().filter(tags__slug=slug)
+    posts = get_pots().filter(tags__slug=slug).order_by('-created_at')
     page_obj = pagination(request, posts)
-    title = SiteSetup.objects.all().first().title
+
+    if len(posts) == 0:
+        raise Http404()
 
     context = {
-        'site_title': title,
+        'site_title': f"Posts da Tag {page_obj[0].tags.first().name} - {blog_title()}",
         'page_obj': page_obj
     }
 
@@ -67,17 +89,18 @@ def tag(request, slug):
 
 def search(request):
     query = request.GET.get('search', None).strip()
-    posts =  Post.objects.get_published().filter(
+    posts = get_pots().filter(
         Q(title__icontains=query) | Q(excerpt__icontains=query) |
         Q(content__icontains=query)
     )
 
     page_obj = pagination(request, posts)
+    
     if query:
-        title = f"Você pesquisou por {query} - "
-        title += SiteSetup.objects.all().first().title
+        title = f"Você pesquisou por {query[:20]} - "
+        title += blog_title()
     else:
-        title = SiteSetup.objects.all().first().title
+        title = blog_title()
 
     context = {
         'site_title': title,
@@ -90,12 +113,14 @@ def search(request):
 
 
 def post(request, slug):
-    post =  Post.objects.get_published().filter(slug=slug).first()
-    title = SiteSetup.objects.all().first().title
+    post_obj = get_pots().filter(slug=slug).first()
+
+    if post_obj is None:
+        raise Http404()
 
     context = {
-        'site_title': f"{post.title} - {title}",
-        'post': post,
+        'site_title': f"{post_obj.title} - {blog_title()}",
+        'post': post_obj,
     }
 
     return render(request, 'blog/pages/post.html', context)

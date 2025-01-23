@@ -165,6 +165,14 @@ html,
   padding-bottom: var(--spacing-smlst);
 }
 
+.mt-base {
+  margin-top: var(--spacing-base);
+}
+
+.mb-base {
+  margin-bottom: var(--spacing-base);
+}
+
 .center {
   text-align: center;
 }
@@ -290,7 +298,7 @@ nav li {
 .card-actions {
   display: flex;
   flex-flow: row wrap;
-  align-items: center;
+  align-items: flex-end;
   justify-content: end;
   gap: var(--spacing-smlst);
 }
