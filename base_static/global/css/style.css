@@ -328,7 +328,8 @@ nav li {
   align-items: center;
   justify-content: center;
   flex-flow: row wrap;
-  gap: var(--spacing-base);
+  gap: var(--spacing-bg);
+  font-weight: 600;
 }
 
 input[type='search']::-webkit-search-decoration,

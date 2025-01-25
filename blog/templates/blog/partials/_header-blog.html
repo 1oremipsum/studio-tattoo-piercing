@@ -43,7 +43,9 @@
                             {{ link.text }}
                         </a>
                         {% else %}
-                        <a class="menu-link" href="{{ link.url_or_path }}">{{ link.text }}</a>
+                        <a class="menu-link" href="{{ link.url_or_path }}">
+                            {{ link.text }}
+                        </a>
                         {% endif %}
                     </li>
                     {% endfor %}
