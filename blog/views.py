@@ -21,6 +21,13 @@ def get_post():
 
 # views here.
 
+def index(request):
+    context = {
+        'site_title': 'Studio Tattoo & Piercing'
+    }
+    return render(request, 'blog/pages/index.html', context)
+
+
 class PostListView(ListView):
     model = Post
     template_name = 'blog/pages/blog.html'
@@ -33,7 +40,6 @@ class PostListView(ListView):
         context = super().get_context_data(**kwargs)
         context.update({'site_title': blog_title()})
         return context
-
 
 
 class CreatedByListView(PostListView):
@@ -51,7 +57,7 @@ class CreatedByListView(PostListView):
             user_full_name = f'{user.first_name} {user.last_name}'
     
         ctx.update({
-            'site_title': f"Posts de {user_full_name} - {blog_title()}",
+            'site_title': f"Posts de {user_full_name} | {blog_title()}",
         })
         return ctx
     
@@ -89,7 +95,7 @@ class CategoryListView(PostListView):
     def get_context_data(self, **kwargs):
         ctx = super().get_context_data(**kwargs)
         page_title = (
-            f'Posts da Categoria {self.object_list[0].category.name} - {blog_title()}'
+            f'Posts da Categoria {self.object_list[0].category.name} | {blog_title()}'
         )
         ctx.update({
             'site_title': page_title,
@@ -98,51 +104,74 @@ class CategoryListView(PostListView):
         return ctx
 
 
-def index(request):
-    context = {
-        'site_title': 'Studio Tattoo & Piercing'
-    }
-    return render(request, 'blog/pages/index.html', context)
+class TagListView(PostListView):
+    allow_empty = False
 
-
-def tag(request, slug):
-    posts = get_post().filter(tags__slug=slug).order_by('-created_at')
-    page_obj = pagination(request, posts)
-
-    if len(posts) == 0:
-        raise Http404()
-
-    context = {
-        'site_title': f"Posts da Tag {page_obj[0].tags.first().name} - {blog_title()}",
-        'page_obj': page_obj
-    }
-
-    return render(request, 'blog/pages/blog.html', context)
-
-
-def search(request):
-    query = request.GET.get('search', None).strip()
-    posts = get_post().filter(
-        Q(title__icontains=query) | Q(excerpt__icontains=query) |
-        Q(content__icontains=query)
-    )
-
-    page_obj = pagination(request, posts)
+    def __init__(self, **kwargs: Any) -> None:
+        super().__init__(**kwargs)
+        self._temp_context: dict[str, Any] = {}
     
-    if query:
-        title = f"Você pesquisou por {query[:20]} - "
-        title += blog_title()
-    else:
-        title = blog_title()
 
-    context = {
-        'site_title': title,
-        'posts': posts,
-        'search_value': query,
-        'page_obj': page_obj
-    }
+    def get_queryset(self) -> QuerySet[Any]:
+        return super().get_queryset().filter(
+            tags__slug=self.kwargs.get('slug')
+        )
+    
 
-    return render(request, 'blog/pages/blog.html', context)
+    def get_context_data(self, **kwargs):
+        ctx = super().get_context_data(**kwargs)
+        page_title = (
+            f"Posts da Tag {self.object_list[0].tags.first().name} | {blog_title()}"
+        )
+    
+        ctx.update({
+            'site_title': page_title,
+        })
+
+        return ctx
+
+
+class SearchListView(PostListView):
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
+        self._search_value = ''
+
+
+    def get_title(self):
+        q = self._search_value
+        if q:
+            title = f"Você pesquisou por {q[:20]} | "
+            title += blog_title()
+        
+        return title
+
+
+    def setup(self, request, *args, **kwargs):
+        self._search_value = request.GET.get('search', '').strip()
+        return super().setup(request, *args, **kwargs)
+
+
+    def get_queryset(self):
+        q = self._search_value
+        return super().get_queryset().filter(
+            Q(title__icontains=q) | Q(excerpt__icontains=q) |Q(content__icontains=q)
+        )
+
+
+    def get_context_data(self, **kwargs):
+        ctx = super().get_context_data(**kwargs)
+        ctx.update({
+            'site_title': self.get_title(),
+            'search_value': self._search_value,
+            })
+
+        return ctx
+    
+
+    def get(self, request, *args, **kwargs):
+        if self._search_value == '':
+            return redirect('blog:home_blog')
+        return super().get(request, *args, **kwargs)
 
 
 def post(request, slug):
