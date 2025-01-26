@@ -1,3 +1,4 @@
+from django.views.generic.detail import DetailView
 from django.views.generic.list import ListView
 from django.contrib.auth.models import User
 from django.db.models.query import QuerySet
@@ -5,10 +6,11 @@ from sitesetup.models import SiteSetup
 from django.http import Http404
 from django.db.models import Q
 from blog.models import Post
-from typing import Any
+from typing import Dict, Any
 
-from utils.pagination.model import pagination
 from django.shortcuts import redirect, render
+
+# utils
 
 PER_PAGE = 9
 
@@ -19,13 +21,17 @@ def blog_title():
 def get_post():
     return Post.objects.get_published()
 
-# views here.
+# views
 
 def index(request):
     context = {
         'site_title': 'Studio Tattoo & Piercing'
     }
     return render(request, 'blog/pages/index.html', context)
+
+
+def gallery(request):
+    return render(request, 'blog/pages/gallery.html')
 
 
 class PostListView(ListView):
@@ -174,19 +180,22 @@ class SearchListView(PostListView):
         return super().get(request, *args, **kwargs)
 
 
-def post(request, slug):
-    post_obj = get_post().filter(slug=slug).first()
+class PostDetailView(DetailView):
+    model = Post
+    template_name = 'blog/pages/post.html'
+    slug_field = 'slug'
+    context_object_name = 'post'
 
-    if post_obj is None:
-        raise Http404()
+    def get_context_data(self, **kwargs: Any) -> Dict[str, Any]:
+        ctx = super().get_context_data(**kwargs)
+        post = self.get_object()
+        page_title = f"{post.title} | {blog_title()}"
+        ctx.update({
+            'site_title': page_title,
+        })
 
-    context = {
-        'site_title': f"{post_obj.title} - {blog_title()}",
-        'post': post_obj,
-    }
+        return ctx
 
-    return render(request, 'blog/pages/post.html', context)
+    def get_queryset(self):
+        return super().get_queryset().filter(is_published=True)
 
-
-def gallery(request):
-    return render(request, 'blog/pages/gallery.html')
