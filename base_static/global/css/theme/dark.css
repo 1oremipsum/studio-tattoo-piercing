@@ -94,7 +94,6 @@ nav li a:hover {
 }
 .menu-link:hover{
     color: var(--clr-gold-dk);
-
 }
 
 /* Post-card */
@@ -162,6 +161,48 @@ nav li a:hover {
 .post-tags .post-tag-link:hover,
 .post-tags .post-tag-link:hover i {
     color: var(--clr-blue-ltst);
+}
+
+/*Header Gallery*/
+.header.section-wrapper.gallery {
+    background-color: var(--clr-white-dk);
+    border-top: 1px solid var(--clr-silver);
+    border-bottom: 1px solid var(--clr-silver);
+    box-shadow: 0 2px 12px var(--clr-white);
+}
+
+.gallery-description {
+    color: var(--clr-black);
+}
+
+.gallery-link {
+    color: var(--clr-black);
+}
+
+.gallery-link:hover {
+    color: var(--clr-silver-dkr);
+}
+
+.btn-link {
+    color: var(--clr-black);
+}
+
+.btn.menu-link{
+    color: var(--clr-silver-ltr);
+    border: 1px solid var(--clr-silver-dkst);
+    background-color: var(--clr-black);
+}
+
+.btn.menu-link:hover {
+    background-color: var(--clr-silver-dkst);
+}
+
+.menu-items.on-right li a{
+    color: var(--clr-silver-dkst);    
+}
+
+.menu-items.on-right li a:hover{
+    color: var(--clr-silver-dkr);    
 }
 
 /* Footer */

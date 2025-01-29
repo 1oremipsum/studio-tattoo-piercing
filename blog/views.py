@@ -30,10 +30,6 @@ def index(request):
     return render(request, 'blog/pages/index.html', context)
 
 
-def gallery(request):
-    return render(request, 'blog/pages/gallery.html')
-
-
 class PostListView(ListView):
     model = Post
     template_name = 'blog/pages/blog.html'

@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     # my apps
     'blog',
+    'gallery',
     'sitesetup',
     # summernote
     'django_summernote',
@@ -63,6 +64,7 @@ TEMPLATES = [
         'DIRS': [
             BASE_DIR / 'base_templates',
             BASE_DIR / 'blog',
+            BASE_DIR / 'gallery',
         ],
         'APP_DIRS': True,
         'OPTIONS': {

@@ -3,7 +3,7 @@
         <div class="section-gap-sm">
 
             <h3 class="blog-title center pb-smlst">
-                <a class="blog-link" href="/"> {{ blog_setup.title }} </a>
+                <a class="blog-link" href="{{ blog_setup.menu.first.url_or_path }}"> {{ blog_setup.title }} </a>
             </h3>
 
             {% if blog_setup.show_description %}
