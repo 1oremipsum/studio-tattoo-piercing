@@ -133,7 +133,7 @@ STATICFILES_DIRS = (
 )
 
 STATIC_URL = '/static/'
-STATIC_ROOT = DATA_DIR / 'static'
+STATIC_ROOT = DATA_DIR / 'assets'
 MEDIA_URL = '/media/'
 MEDIA_ROOT = DATA_DIR / 'media'
 

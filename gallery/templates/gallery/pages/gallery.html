@@ -1,17 +1,23 @@
 {% extends "global/base.html" %}
 {% block content %}
     {% include "templates/gallery/partials/_header-gallery.html" %}
+    {% comment %} 
     <div class="gallery-wrapper">
         <main class="main-content section-wrapper">
             <div class="section-content-wide">
                 <div class="section-gap">
                     <div class="card-grid">
-                        {% for i in ""|ljust:"12" %}
+                        {% for i in ""|ljust:"20" %}
                             {% include "templates/gallery/partials/_image-card.html" with i=forloop.counter0 %}
                         {% endfor %}
                     </div>
                 </div>
             </div>
         </main>
+    </div> 
+    {% endcomment %}
+    <div class="gallery-wrapper">
+        {% include "templates/gallery/partials/_image-card.html" %}
     </div>
+    
 {% endblock content %}

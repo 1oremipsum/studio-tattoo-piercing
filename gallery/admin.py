@@ -29,9 +29,12 @@ class ImageInline(admin.TabularInline):
 
 @admin.register(Portfolio)
 class PortfolioAdmin(admin.ModelAdmin):
-    list_display = 'id','name', 'description', 'author',
+    list_display = 'id','name', 'description', 'created_at','author',
     list_display_links = 'id','name',
     search_fields = 'id', 'name', 'author',
     list_per_page = 10
     ordering = '-id',
+    readonly_fields = (
+        'created_at',
+        )
     inlines = [ImageInline]

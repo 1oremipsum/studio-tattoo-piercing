@@ -3,7 +3,7 @@ from django.db import models
 from django.contrib.auth.models import User
 
 from utils.randomization.models import slugify_new
-from django.utils import timezone
+from utils.resizing.images import resize_image
 
 class Portfolio(models.Model):
     class Meta:
@@ -17,6 +17,9 @@ class Portfolio(models.Model):
         blank=True, null=True,
         related_name='author',
         verbose_name='Autor'
+    )
+    created_at = models.DateTimeField(
+        auto_now_add=True, verbose_name='Criado em'
     )
 
     def __str__(self):
@@ -50,7 +53,7 @@ class Image(models.Model):
         verbose_name_plural = 'Imagens'
 
     description = models.CharField(
-        max_length=65, blank=True, null=True
+        max_length=85, blank=True, null=True
     )
     image = models.ImageField(
         upload_to='gallery/%Y/%m/',
@@ -75,4 +78,17 @@ class Image(models.Model):
 
     def __str__(self):
         return self.description or f"Imagem {self.id}"
+    
+    def save(self, *args, **kwargs):
+        current_image_name = str(self.image.name)
+        super_save = super().save(*args, **kwargs)
+        image_changed = False
+
+        if self.image:
+            image_changed = current_image_name != self.image.name
+
+        if image_changed:
+            resize_image(self.image, 800, True, 90)
+
+        return super_save
 

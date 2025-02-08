@@ -1,11 +1,12 @@
 :root {
     --clr-base: hsl(0, 1%, 10%);
 
-    --clr-black-drk: hsl(0, 0%, 5%);
+    --clr-black-lt: hsl(0, 5%, 15%);
     --clr-black: hsl(0, 5%, 10%);
+    --clr-black-drk: hsl(0, 0%, 5%);
 
     --clr-white: hsl(220, 30%, 96%);
-    --clr-white-dk: hsl(220, 29%, 90%);
+    --clr-white-dk: hsla(220, 29%, 90%, 0.92);
 
     --clr-gold-ltr: hsl(51, 100%, 70%);
     --clr-gold-lt: hsl(51, 100%, 60%);
@@ -169,6 +170,10 @@ nav li a:hover {
     border-top: 1px solid var(--clr-silver);
     border-bottom: 1px solid var(--clr-silver);
     box-shadow: 0 2px 12px var(--clr-white);
+}
+
+.gallery-title{
+    color: var(--clr-black-lt);
 }
 
 .gallery-description {
