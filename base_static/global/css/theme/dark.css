@@ -116,15 +116,16 @@ nav li a:hover {
 
 /* Search */
 .search-input {
-    border: 1px solid var(--clr-silver-dkst);
+    border: 0;
+    box-shadow:  2px 4px 6px var(--clr-silver-dkst);
 }
 
 .search-input::placeholder {
-    color: var(--clr-black);
+    color: var(--clr-silver-dkst);
 }
 
 .search-input:focus {
-    border: 2px solid var(--clr-blue-ltst);
+    box-shadow:  2px 4px 6px var(--clr-black-lt);
 }
 
 .search-btn {
@@ -186,6 +187,14 @@ nav li a:hover {
 
 .gallery-link:hover {
     color: var(--clr-silver-dkr);
+}
+
+.menu.gallery > i{
+    color: var(--clr-silver-dkst);
+}
+
+.menu.gallery > p{
+    color: var(--clr-silver-dkst);
 }
 
 .btn-link {
