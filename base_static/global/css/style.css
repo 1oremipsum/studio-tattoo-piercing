@@ -536,6 +536,7 @@ input[type='search']::-webkit-search-results-decoration {
 .card-image-wrapper > .card-image{
   max-width: 100%;
   margin-bottom: 0.5em;
+  border-radius: var(--br-base);
   display: block;
 }
 

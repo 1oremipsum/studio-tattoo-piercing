@@ -1,9 +1,9 @@
 from django.urls import path
 
-from gallery.views import gallery
+from gallery.views import ImagesListView
 
 app_name = 'gallery'
 
 urlpatterns = [
-    path('', gallery, name='home_gallery'),
+    path('', ImagesListView.as_view(), name='home_gallery'),
 ]

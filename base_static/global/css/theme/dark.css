@@ -128,6 +128,10 @@ nav li a:hover {
     box-shadow:  2px 4px 6px var(--clr-black-lt);
 }
 
+.search-input:hover {
+    box-shadow:  2px 4px 6px var(--clr-black-lt);
+}
+
 .search-btn {
     color: var(--clr-silver);
 }
@@ -175,6 +179,16 @@ nav li a:hover {
 
 .gallery-title{
     color: var(--clr-black-lt);
+}
+
+.search.gallery > .search-form >
+.search-content > .search-input:focus {
+    box-shadow:  2px 4px 6px var(--clr-black-lt);
+}
+
+.search.gallery > .search-form >
+.search-content > .search-input:hover {
+    box-shadow:  2px 4px 6px var(--clr-black-lt);
 }
 
 .gallery-description {

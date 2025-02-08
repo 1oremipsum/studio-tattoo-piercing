@@ -78,7 +78,7 @@ class Image(models.Model):
 
     def __str__(self):
         return self.description or f"Imagem {self.id}"
-    
+
     def save(self, *args, **kwargs):
         current_image_name = str(self.image.name)
         super_save = super().save(*args, **kwargs)
@@ -88,7 +88,7 @@ class Image(models.Model):
             image_changed = current_image_name != self.image.name
 
         if image_changed:
-            resize_image(self.image, 800, True, 90)
+            resize_image(self.image, 960, True, 85)
 
         return super_save
 
