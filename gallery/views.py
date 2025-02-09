@@ -1,27 +1,23 @@
 from django.views.generic.list import ListView
 from sitesetup.models import SiteSetup
-from gallery.models import Image
+from gallery.models import Image, ImageCategory
+from typing import Any
 
-PER_PAGE = 20
+from django.shortcuts import get_object_or_404
 
-def gallery_title():
-    return SiteSetup.objects.get(id=3).title
-
-
-def get_images():
-    return Image.objects.all()
-
+PER_PAGE = 15
 
 class ImagesListView(ListView):
     model = Image
     template_name = 'gallery/pages/gallery.html'
     context_object_name = 'images_objs'
-    ordering = '-pk',
     paginate_by = PER_PAGE
-    queryset = get_images()
+    
+    def get_queryset(self):
+        return Image.objects.get_published().get_order_desc()
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context.update({'site_title': gallery_title()})
+        context['category_objs'] = ImageCategory.objects.all()
+        context['site_title'] = get_object_or_404(SiteSetup, id=3).title
         return context
-

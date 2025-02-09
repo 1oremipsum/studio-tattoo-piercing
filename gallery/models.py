@@ -25,7 +25,6 @@ class Portfolio(models.Model):
     def __str__(self):
         return self.name
 
-
 class ImageCategory(models.Model):
     class Meta:
         verbose_name = 'Categoría'
@@ -47,10 +46,31 @@ class ImageCategory(models.Model):
         return self.name
 
 
+class ImageQuerySet(models.QuerySet):
+    def get_published(self):
+        return self.filter(is_published=True)
+
+    def get_order_desc(self):
+        return self.order_by('-id')
+
+
+class ImageManager(models.Manager):
+    def get_queryset(self):
+        return ImageQuerySet(self.model, using=self._db)
+
+    def get_published(self):
+        return self.get_queryset().get_published()
+
+    def get_order_desc(self):
+        return self.get_queryset().get_order_desc()
+
+
 class Image(models.Model):
     class Meta:
         verbose_name = 'Imagem'
         verbose_name_plural = 'Imagens'
+
+    objects = ImageManager()
 
     description = models.CharField(
         max_length=85, blank=True, null=True
@@ -91,4 +111,3 @@ class Image(models.Model):
             resize_image(self.image, 960, True, 85)
 
         return super_save
-

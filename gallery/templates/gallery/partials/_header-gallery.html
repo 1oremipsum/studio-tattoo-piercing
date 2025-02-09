@@ -30,12 +30,11 @@
         <p>Filtros<p>
         <ul class="menu-items on-left">
             <li class="menu-item">
-                <a class="btn menu-link" href="#" target="_blank">
-                    Tatuagens
-                </a>
-                <a class="btn menu-link" href="#">
-                    Piercings
-                </a>
+                {% for category in category_objs %}
+                    <a class="btn menu-link" href="#" target="_blank">
+                        {{ category.name }}
+                    </a>
+                {% endfor %}
                 <a class="btn menu-link" href="#">
                     Todos
                 </a>

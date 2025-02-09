@@ -528,7 +528,7 @@ input[type='search']::-webkit-search-results-decoration {
 /* Gallery */
 .gallery-wrapper {
   margin: 1em;
-  columns: 5 315px;
+  columns: 5 250px;
   column-gap: 0.5em;
 }
 
