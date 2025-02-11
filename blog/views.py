@@ -138,7 +138,6 @@ class SearchListView(PostListView):
         super().__init__(**kwargs)
         self._search_value = ''
 
-
     def get_title(self):
         q = self._search_value
         if q:
@@ -146,7 +145,6 @@ class SearchListView(PostListView):
             title += blog_title()
         
         return title
-
 
     def setup(self, request, *args, **kwargs):
         self._search_value = request.GET.get('search', '').strip()
