@@ -1,9 +1,10 @@
 from django.urls import path
 
-from gallery.views import ImagesListView
+from gallery.views import ImagesListView, ImageCategoryView
 
 app_name = 'gallery'
 
 urlpatterns = [
     path('', ImagesListView.as_view(), name='home_gallery'),
+    path('category/<slug:slug>', ImageCategoryView.as_view(), name='img_category'),
 ]

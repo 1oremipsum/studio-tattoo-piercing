@@ -31,11 +31,11 @@
         <ul class="menu-items on-left">
             <li class="menu-item">
                 {% for category in category_objs %}
-                    <a class="btn menu-link" href="#" target="_blank">
+                    <a class="btn menu-link" href="{% url 'gallery:img_category' category.slug %}" >
                         {{ category.name }}
                     </a>
                 {% endfor %}
-                <a class="btn menu-link" href="#">
+                <a class="btn menu-link" href="{{ gallery_setup.menu.first.url_or_path }}">
                     Todos
                 </a>
             </li>
