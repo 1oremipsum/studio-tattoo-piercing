@@ -1,12 +1,23 @@
 from django.contrib import admin
-from .models import Portfolio, Image, ImageCategory
+from .models import Portfolio, Image, ImageCategory, ImageArtStyle
 
 @admin.register(ImageCategory)
-class ImageCategory(admin.ModelAdmin):
+class ImageCategoryAdmin(admin.ModelAdmin):
     list_display = 'id', 'name', 'slug',
     list_display_links = 'id', 'name',
     search_fields = 'id', 'name', 'slug',
     list_per_page = 10
+    ordering = '-id',
+    prepopulated_fields = {
+        "slug": ('name',),
+    }
+
+@admin.register(ImageArtStyle)
+class ImageArtStyleAdmin(admin.ModelAdmin):
+    list_display = ('id', 'name', 'slug', 'category')
+    list_display_links = ('id', 'name')
+    search_fields = ('id', 'name', 'category')
+    list_per_page = 15
     ordering = '-id',
     prepopulated_fields = {
         "slug": ('name',),
@@ -22,6 +33,17 @@ class ImageAdmin(admin.ModelAdmin):
     autocomplete_fields = 'category',
     ordering = '-id',
     list_per_page = 15
+
+    def formfield_for_manytomany(self, db_field, request, **kwargs):
+        if db_field == "style":
+            if 'object_id' in request.resolver_match.kwargs:
+                image = Image.objects.get(id=request.resolver_match.kwargs['object_id'])
+                kwargs["queryset"] = ImageArtStyle.objects.filter(category=image.category)
+            else:
+                kwargs["queryset"] = ImageArtStyle.objects.none()
+
+        return super().formfield_for_manytomany(db_field, request, **kwargs)
+
 
 class ImageInline(admin.TabularInline):
     model = Image

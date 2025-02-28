@@ -1,9 +1,30 @@
 from django.db import models
 
+from django.core.exceptions import ValidationError
 from django.contrib.auth.models import User
 
 from utils.randomization.models import slugify_new
 from utils.resizing.images import resize_image
+
+
+class ImageQuerySet(models.QuerySet):
+    def get_published(self):
+        return self.filter(is_published=True)
+
+    def get_order_desc(self):
+        return self.order_by('-id')
+
+
+class ImageManager(models.Manager):
+    def get_queryset(self):
+        return ImageQuerySet(self.model, using=self._db)
+
+    def get_published(self):
+        return self.get_queryset().get_published()
+
+    def get_order_desc(self):
+        return self.get_queryset().get_order_desc()
+
 
 class Portfolio(models.Model):
     class Meta:
@@ -25,6 +46,7 @@ class Portfolio(models.Model):
     def __str__(self):
         return self.name
 
+
 class ImageCategory(models.Model):
     class Meta:
         verbose_name = 'Categoría'
@@ -41,28 +63,35 @@ class ImageCategory(models.Model):
             self.slug = slugify_new(self.name, 4)
         return super().save(*args, **kwargs)
 
-
     def __str__(self) -> str:
         return self.name
 
 
-class ImageQuerySet(models.QuerySet):
-    def get_published(self):
-        return self.filter(is_published=True)
+class ImageArtStyle(models.Model):
+    class Meta:
+        verbose_name = 'Estilo de Arte'
+        verbose_name_plural = 'Estilos de Arte'
 
-    def get_order_desc(self):
-        return self.order_by('-id')
+    name = models.CharField(
+        max_length=100, verbose_name='Nome'
+    )
+    slug = models.SlugField(
+        unique=True, default=None,
+        null=True, blank=True, max_length=100,
+    )
+    category = models.ForeignKey(
+        ImageCategory, on_delete=models.CASCADE,
+        related_name='ImageArtStyleCategory'
+    )
+    description = models.TextField(verbose_name='Descrição')
 
+    def save(self, *args, **kwargs):
+        if not self.slug:
+            self.slug = slugify_new(self.name, 4)
+        return super().save(*args, **kwargs)
 
-class ImageManager(models.Manager):
-    def get_queryset(self):
-        return ImageQuerySet(self.model, using=self._db)
-
-    def get_published(self):
-        return self.get_queryset().get_published()
-
-    def get_order_desc(self):
-        return self.get_queryset().get_order_desc()
+    def __str__(self) -> str:
+        return self.name
 
 
 class Image(models.Model):
@@ -95,9 +124,19 @@ class Image(models.Model):
             'para a imagem ser exibida publicamente.'
         ), verbose_name='Publicar'
     )
+    style = models.ManyToManyField(
+        ImageArtStyle, blank=True, verbose_name='Estilo(s)'
+    )
 
-    def __str__(self):
-        return self.description or f"Imagem {self.id}"
+    def clean(self):
+        clean = super().clean()
+        for style in self.style.all():
+            if style.category.name != self.category.name:
+                raise ValidationError(
+                    f'O estilo "{style.name}" (da categoria: {style.category.name})'
+                    f'não pode ser associado a uma imagem de categoria "{self.category.name}"'
+                )
+        return clean
 
     def save(self, *args, **kwargs):
         current_image_name = str(self.image.name)
@@ -111,3 +150,6 @@ class Image(models.Model):
             resize_image(self.image, 960, True, 85)
 
         return super_save
+
+    def __str__(self):
+        return self.description or f"Imagem {self.id}"
