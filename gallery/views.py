@@ -1,4 +1,4 @@
-from gallery.models import Image, ImageCategory
+from gallery.models import Image, ImageCategory, ImageArtStyle
 from django.views.generic.list import ListView
 from django.db.models.query import QuerySet
 from sitesetup.models import SiteSetup
@@ -21,6 +21,7 @@ class ImagesListView(ListView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['category_objs'] = ImageCategory.objects.all()
+        context['style_objs'] = ImageArtStyle.objects.all()
         context['site_title'] = get_object_or_404(SiteSetup, id=3).title
         return context
 
@@ -39,6 +40,18 @@ class ImageCategoryView(ImagesListView):
             f'{self.object_list[0].category.name} | {get_object_or_404(SiteSetup, id=3).title}'
         )
         return context
+
+
+class ImageStyleView(ImagesListView):
+    allow_empty = False
+
+    def get_queryset(self):
+        style_slug = self.kwargs.get('slug')
+        style = get_object_or_404(ImageArtStyle, slug=style_slug)
+        return super().get_queryset().filter(style=style)
+    
+    def get_context_data(self, **kwargs):
+        return super().get_context_data(**kwargs)
 
 
 class SearchListView(ImagesListView):
@@ -78,5 +91,3 @@ class SearchListView(ImagesListView):
         ctx['search_value'] = self._search_value
 
         return ctx
-        
-    

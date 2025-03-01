@@ -16,7 +16,7 @@ class ImageCategoryAdmin(admin.ModelAdmin):
 class ImageArtStyleAdmin(admin.ModelAdmin):
     list_display = ('id', 'name', 'slug', 'category')
     list_display_links = ('id', 'name')
-    search_fields = ('id', 'name', 'category')
+    search_fields = ('id', 'name', 'category__name')
     list_per_page = 15
     ordering = '-id',
     prepopulated_fields = {
@@ -27,8 +27,8 @@ class ImageArtStyleAdmin(admin.ModelAdmin):
 class ImageAdmin(admin.ModelAdmin):
     list_display = 'id', 'description', 'category', 'portfolio', 'is_published',
     list_display_links = 'id',
-    search_fields = 'id', 'description', 'category', 'portfolio',
-    list_filter = 'category', 'is_published',
+    search_fields = 'id', 'description',
+    list_filter = 'category', 'style','is_published', 'portfolio'
     list_editable = 'is_published',
     autocomplete_fields = 'category',
     ordering = '-id',
