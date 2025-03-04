@@ -16,6 +16,12 @@
                     placeholder="Pesquisar"
                     value= {{ search_value }}
                 >
+                {% if selected_style %}
+                    <input type="hidden" name="style" value="{{ selected_style }}">
+                {% endif %}
+                {% if selected_category %}
+                    <input type="hidden" name="category" value="{{ selected_category }}">
+                {% endif %}
                 <button class="search-btn" type="submit" aria-labelledby="search-label">
                     <i class="fa fa-search"></i>
                 </button>
@@ -31,13 +37,20 @@
         <ul class="menu-items on-left">
             <li class="menu-item">
                 {% for category in category_objs %}
-                    <a class="btn menu-link" href="{% url 'gallery:img_category' category.slug %}" >
+                    <a class="btn menu-link"  href="{% url 'gallery:search' %}?category={{ category.slug }}{% if search_value %}&search={{ search_value }}{% endif %}{% if selected_style %}&style={{ selected_style }}{% endif %}" >
                         {{ category.name }}
                     </a>
                 {% endfor %}
                 <a class="btn menu-link" href="{{ gallery_setup.menu.first.url_or_path }}">
                     Todos
                 </a>
+            </li>
+            <li class="menu-item">
+                {% for style in style_objs %}
+                    <a class="btn menu-link" href="{% url 'gallery:search' %}?style={{ style.slug }}{% if search_value %}&search={{ search_value }}{% endif %}{% if selected_category %}&category={{ selected_category }}{% endif %}">
+                        {{ style.name }}
+                    </a>
+                {% endfor %}
             </li>
         </ul>
     </nav>
