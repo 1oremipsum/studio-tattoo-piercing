@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     # my apps
+    'main',
     'blog',
     'gallery',
     'sitesetup',
@@ -63,6 +64,7 @@ TEMPLATES = [
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [
             BASE_DIR / 'base_templates',
+            BASE_DIR / 'main',
             BASE_DIR / 'blog',
             BASE_DIR / 'gallery',
         ],

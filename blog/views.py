@@ -21,14 +21,6 @@ def blog_title():
 def get_post():
     return Post.objects.get_published()
 
-# views
-
-def index(request):
-    context = {
-        'site_title': 'Studio Tattoo & Piercing'
-    }
-    return render(request, 'blog/pages/index.html', context)
-
 
 class PostListView(ListView):
     model = Post
