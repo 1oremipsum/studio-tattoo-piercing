@@ -197,21 +197,77 @@ header {
   align-items: center;
 }
 
-.header.section-wrapper.base{
-  padding: var(--spacing-micro) var(--spacing-bgst);
+.header.section-wrapper.base .container {
+  width: 90%;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.header.section-wrapper.base li a{
+  font-size: var(--fs-smlr);
+}
+
+.logo p {
+  font-size: var(--fs-base);
+  font-weight: bold;
 }
 
 .logo img {
   height: var(--spacing-bgr);
 }
 
-nav ul {
+.header.section-wrapper.base .container nav ul {
   list-style: none;
   display: flex;
+  margin: 0;
+  padding: 0;
 }
 
 nav li {
   margin: 0 var(--spacing-smlr);
+}
+
+.toggle {
+  cursor: pointer;
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  width: 74px;
+  height: 34px;
+  border-radius: 50px;
+  transition: .2s;
+}
+
+.toggle i {
+  width: 50%;
+  line-height: 35.5px;
+  text-align: center;
+  font-size: 16px;
+  z-index: 1;
+}
+
+.toggle .ball {
+  position: absolute;
+  left: 1px;
+  width: 25px;
+  height: 25px;
+  margin: 4.44px;
+  border-radius: 50%;
+  transition: .3s ease-out;
+}
+
+#toggle {
+  display: none;
+}
+
+.dark-theme {
+  border-radius: 50px;
+}
+
+.light-theme .toggle .ball {
+  transform: translate(37px);
 }
 
 /* Header-blog */

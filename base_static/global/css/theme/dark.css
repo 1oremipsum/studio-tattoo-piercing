@@ -70,6 +70,44 @@ nav li a:hover {
     color: var(--clr-silver-dk);
 }
 
+/* toggle dark-theme */
+
+.dark-theme {
+    background-color: #171718;
+}
+
+.dark-theme .toggle {
+    background: #171718;
+    box-shadow: 1px 1px 2px #191b1b, -1px -1px 2px #2e2d2d;
+}
+
+.dark-theme .toggle .fa-moon {
+    color: #0f0f0f;
+}
+
+.dark-theme .toggle .ball {
+    background: #f5f5f5e8;
+}
+
+/* toggle light-theme */
+
+.light-theme .toggle {
+    background: linear-gradient(145deg, #f5f5f5e8, #ffffffe8);
+    box-shadow: 0.5px 0.5px 1px #e6e6e6bd, -0.5px -0.5px 1px #ffffffa9;
+}
+
+.light-theme .toggle .fa-sun {
+    color: #f5f5f5e8;
+}
+
+.light-theme .toggle .fa-moon {
+    color: #0f0f0f;
+}
+  
+.light-theme .toggle .ball {
+    background: #0f0f0f;
+}
+
 /* Header-blog */
 .blog-link {
     color: var(--clr-black);
