@@ -1,12 +1,13 @@
 :root {
     --clr-base: hsl(0, 1%, 10%);
+    --clr-base-2: hsl(0, 0%, 14%);
 
     --clr-black-lt: hsl(0, 5%, 15%);
     --clr-black: hsl(0, 5%, 10%);
     --clr-black-drk: hsl(0, 0%, 5%);
 
     --clr-white: hsl(220, 30%, 96%);
-    --clr-white-dk: hsla(220, 29%, 90%, 0.92);
+    --clr-white-dk: hsla(220, 29%, 90%, 0.95);
 
     --clr-gold-ltr: hsl(51, 100%, 70%);
     --clr-gold-lt: hsl(51, 100%, 60%);
@@ -16,7 +17,7 @@
 
     --clr-silver-ltr: hsl(0, 0%, 95%);
     --clr-silver-lt: hsl(0, 0%, 85%);
-    --clr-silver: hsl(0, 0%, 75%);
+    --clr-silver: #bfbfbf;
     --clr-silver-dk: hsl(0, 0%, 65%);
     --clr-silver-dkr: hsl(0, 0%, 55%);
     --clr-silver-dkst: hsl(0, 0%, 35%);
@@ -49,8 +50,11 @@ a:hover {
 
 /* Header Base */
 header {
-    background-color: var(--clr-black-drk);
     color: var(--clr-white-dk);
+}
+
+.header.section-wrapper.base {
+    background-color: var(--clr-black-drk);
     box-shadow: 0 2px 6px var(--clr-silver);
 }
 
@@ -106,6 +110,15 @@ nav li a:hover {
   
 .light-theme .toggle .ball {
     background: #0f0f0f;
+}
+
+/* Section body-art budget */
+.budget-content { 
+    color: var(--clr-white);
+}
+
+.artist .button{
+    color: var(--clr-white);
 }
 
 /* Header-blog */
@@ -273,8 +286,7 @@ nav li a:hover {
 
 /* Footer */
 .footer {
-    background: var(--clr-black-drk);
-    color: var(--clr-black);
+    background-color: var(--clr-black-drk);
 }
 
 .footer a {

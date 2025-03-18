@@ -1,9 +1,4 @@
 {% extends "global/base.html" %}
 {% block content %}
-    <h1>Bem-vindo à Landing Page</h1>
-    <p>Esta é a página inicial do site.</p>
-    <ul>
-        <li><a href="{% url 'blog:home_blog' %}">Blog</a></li>
-        <li><a href="{% url 'gallery:home_gallery' %}">Galeria</a></li>
-    </ul>
+    {% include "templates/main/partials/_budget-section.html" %}
 {% endblock content %}
