@@ -117,8 +117,17 @@ nav li a:hover {
     color: var(--clr-white);
 }
 
-.artist .button{
+.artist .button {
     color: var(--clr-white);
+}
+
+.button.view {
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+}
+
+.button.view:hover {
+    background-color: rgba(0, 0, 0, 1);
 }
 
 /* Header-blog */
