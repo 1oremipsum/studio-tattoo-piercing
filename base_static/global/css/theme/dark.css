@@ -130,6 +130,15 @@ nav li a:hover {
     background-color: rgba(0, 0, 0, 1);
 }
 
+/* Carousel */
+.tranding-slider-control .slider-arrow {
+    color: var(--clr-white);
+}
+
+.tranding-slider-control .swiper-pagination .swiper-pagination-bullet {
+    background-color: yellow;
+}
+
 /* Header-blog */
 .blog-link {
     color: var(--clr-black);

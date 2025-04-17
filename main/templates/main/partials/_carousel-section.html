@@ -1,14 +1,46 @@
-<section class="section-carousel">
+<section class="section-carousel" id="tranding">
     <div class="container">
         <h3 class="text-center section-subheadding"> Adicione Sub-Título Aqui</h3>
         <h1 class="text-center section-heading"> Adicione Título Aqui</h1>
     </div>
     <div class="container">
         <div class="swiper tranding-slider">
-            <div class="swiper-wraper">
-                {% include "templates/main/partials/elements/carousel/_img-slider.html" %}
+            <div class="swiper-wrapper">
+                <div class="swiper-slide tranding-slide">
+                    <div class="tranding-slide-img">
+                        <img src="https://picsum.photos/1920/1080/?rand=5" alt="change me">
+                    </div>
+                </div>
+                <div class="swiper-slide tranding-slide">
+                    <div class="tranding-slide-img">
+                        <img src="https://picsum.photos/1920/1080/?rand=6" alt="change me">
+                    </div>
+                </div>
+                <div class="swiper-slide tranding-slide">
+                    <div class="tranding-slide-img">
+                        <img src="https://picsum.photos/1920/1080/?rand=7" alt="change me">
+                    </div>
+                </div>
+                <div class="swiper-slide tranding-slide">
+                    <div class="tranding-slide-img">
+                        <img src="https://picsum.photos/1920/1080/?rand=8" alt="change me">
+                    </div>
+                </div>
+                <div class="swiper-slide tranding-slide">
+                    <div class="tranding-slide-img">
+                        <img src="https://picsum.photos/1920/1080/?rand=9" alt="change me">
+                    </div>
+                </div>
             </div>
-            {% include "templates/main/partials/elements/carousel/_control-slider.html" %}
+        </div>
+        <div class="tranding-slider-control">
+            <div class="swiper-button-prev slider-arrow">
+                <i class="fa-solid fa-arrow-left"></i>
+            </div>
+            <div class="swiper-button-next slider-arrow">
+                <i class="fa-solid fa-arrow-right"></i>
+            </div>
+            <div class="swiper-pagination"></div>
         </div>
     </div>
 </section>
