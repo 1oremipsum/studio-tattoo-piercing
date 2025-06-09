@@ -1,0 +1,16 @@
+:root {
+    --primary-bg: rgba(220, 229, 247, 1);
+    --second-bg: rgba(242, 230, 235, 1);
+
+    --primary-text: hsl(220, 20%, 8%);
+}
+
+body {
+    background: var(--primary-bg);
+    background: linear-gradient(
+        180deg,
+        var(--primary-bg) 0%,
+        var(--second-bg) 50%,
+        var(--primary-bg) 100%);
+    color: var(--primary-text);
+}

@@ -1,39 +1,18 @@
 :root {
-    --clr-base: hsl(0, 1%, 10%);
-    --clr-base-2: hsl(0, 0%, 14%);
-
-    --clr-black-lt: hsl(0, 5%, 15%);
-    --clr-black: hsl(0, 5%, 10%);
-    --clr-black-drk: hsl(0, 0%, 5%);
-
-    --clr-white: hsl(220, 30%, 96%);
-    --clr-white-dk: hsla(220, 29%, 90%, 0.95);
-
-    --clr-gold-ltr: hsl(51, 100%, 70%);
-    --clr-gold-lt: hsl(51, 100%, 60%);
-    --clr-gold: hsl(51, 100%, 50%);
-    --clr-gold-dk: hsl(51, 100%, 40%);
-    --clr-gold-dkr: hsl(51, 100%, 30%);
-
-    --clr-silver-ltr: hsl(0, 0%, 95%);
-    --clr-silver-lt: hsl(0, 0%, 85%);
-    --clr-silver: #bfbfbf;
-    --clr-silver-dk: hsl(0, 0%, 65%);
-    --clr-silver-dkr: hsl(0, 0%, 55%);
-    --clr-silver-dkst: hsl(0, 0%, 35%);
-
-    --clr-blue-ltst: hsl(237, 100%, 80%);
-    --clr-blue-ltr: hsl(237, 100%, 70%);
-    --clr-blue-lt: hsl(237, 100%, 60%);
-    --clr-blue: hsl(237, 100%, 50%);
-    --clr-blue-dk: hsl(237, 100%, 40%);
-    --clr-blue-dkr: hsl(237, 100%, 30%);
-    --clr-blue-dkst: hsl(237, 100%, 20%);
+    --primary-bg: rgb(15, 15, 15);
+    --second-bg: rgba(28, 26, 26, 1);
+    --primary-text: hsl(220, 30%, 96%);
 }
 
 body {
-    background-color: var(--clr-base);
-    color: var(--clr-white);
+    background: var(--primary-bg);
+    background: linear-gradient(
+        180deg, 
+        var(--primary-bg) 0%,
+        var(--second-bg) 50%,
+        var(--primary-bg) 100%
+    );
+    color: var(--primary-text);
 }
 
 a {
@@ -59,7 +38,7 @@ header {
 }
 
 nav li a{
-    color: var(--clr-white);
+    color: var(--primary-text);
 }
 
 nav li a:hover {
@@ -67,58 +46,20 @@ nav li a:hover {
 }
 
 .login a {
-    color: var(--clr-white);
+    color: var(--primary-text);
 }
 
 .login a:hover {
     color: var(--clr-silver-dk);
 }
 
-/* toggle dark-theme */
-
-.dark-theme {
-    background-color: #171718;
-}
-
-.dark-theme .toggle {
-    background: #171718;
-    box-shadow: 1px 1px 2px #191b1b, -1px -1px 2px #2e2d2d;
-}
-
-.dark-theme .toggle .fa-moon {
-    color: #0f0f0f;
-}
-
-.dark-theme .toggle .ball {
-    background: #f5f5f5e8;
-}
-
-/* toggle light-theme */
-
-.light-theme .toggle {
-    background: linear-gradient(145deg, #f5f5f5e8, #ffffffe8);
-    box-shadow: 0.5px 0.5px 1px #e6e6e6bd, -0.5px -0.5px 1px #ffffffa9;
-}
-
-.light-theme .toggle .fa-sun {
-    color: #f5f5f5e8;
-}
-
-.light-theme .toggle .fa-moon {
-    color: #0f0f0f;
-}
-  
-.light-theme .toggle .ball {
-    background: #0f0f0f;
-}
-
 /* Section body-art budget */
 .budget-content { 
-    color: var(--clr-white);
+    color: var(--primary-text);
 }
 
 .artist .button {
-    color: var(--clr-white);
+    color: var(--primary-text);
 }
 
 .button.view {
@@ -132,11 +73,30 @@ nav li a:hover {
 
 /* Carousel */
 .tranding-slider-control .slider-arrow {
-    color: var(--clr-white);
+    color: var(--primary-text);
 }
 
 .tranding-slider-control .swiper-pagination .swiper-pagination-bullet {
-    background-color: yellow;
+    background-color: var(--clr-gold);
+}
+
+.gallery-button {
+    background: linear-gradient(
+        140deg,
+        var(--clr-silver-ltr) 0%,
+        var(--clr-silver) 25%,
+        var(--clr-silver-dk) 50%,
+        var(--clr-silver) 75%,
+        var(--clr-silver-ltr) 100%
+    );
+    background-size: 200% 100%; /* make the gradient twice as wide */
+    background-position: 0% 0%; /* initial position of the gradient */
+    transition: background-position 0.3s ease-in-out, color 0.3s ease-in-out;
+    color: var(--clr-black-lt);
+}
+
+.gallery-button:hover {
+    background-position: 100% 0%; /* slide the gradient to the right */
 }
 
 /* Header-blog */
@@ -308,7 +268,7 @@ nav li a:hover {
 }
 
 .footer a {
-    color: var(--clr-white);
+    color: var(--primary-text);
 }
 
 .footer a:hover {

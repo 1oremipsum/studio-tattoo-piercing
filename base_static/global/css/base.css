@@ -1,0 +1,79 @@
+:root {
+    /* Font-family */
+    --ff-regular: 'Open Sans', 'Times New Roman', Times, serif;
+    --ff-headings: 'Raleway', 'Times New Roman', Times, serif;
+    --ff-mono: 'Courier New', Courier, monospace;
+
+    /* Font-Sizes */
+    /* https://royalfig.github.io/fluid-typography-calculator/ */
+    --fs-smlst: clamp(1.2rem, 1.092307692307692rem + 0.256410256410256vw, 1.4rem);
+    --fs-smlr: clamp(1.4rem, 1.292307692307692rem + 0.2564102564102566vw, 1.6rem);
+    --fs-sm: clamp(1.6rem, 1.4923076923076923rem + 0.25641025641025633vw, 1.8rem);
+    --fs-base: clamp(1.8rem, 1.6923076923076923rem + 0.25641025641025633vw, 2rem);
+    --fs-bg: clamp(2rem, 1.7846153846153847rem + 0.5128205128205127vw, 2.4rem);
+    --fs-bgr: clamp(2.4rem, 1.969230769230769rem + 1.025641025641026vw, 3.2rem);
+    --fs-bgst: clamp(3.2rem, 2.876923076923rem + 0.7692307692307687vw, 3.8rem);
+    --fs-h1: clamp(3.8rem, 3.2615384615384615rem + 1.282051282051282vw, 4.8rem);
+    --fs-h2: clamp(2.8rem, 1.938461538461538rem + 2.051282051282052vw, 4.4rem);
+    --fs-h3: clamp(2.4rem, 1.969230769230769rem + 1.025641025641026vw, 3.2rem);
+    --fs-h4: clamp(2.2rem, 1.8769230769230774rem + 0.7692307692307687vw, 2.8rem);
+    --fs-h5: clamp(1.8rem, 1.476923076923077rem + 0.769230769230769vw, 2.4rem);
+    --fs-h6: clamp(1.6rem, 1.2769230769230768rem + 0.7692307692307694vw, 2.2rem);
+
+    /* Line-Heights */
+    --lh-regular: 1.5;
+    --lh-headings: 1.2;
+    --lh-mono: 1.2;
+
+    /* Spacings */
+    --spacing-micro: 0.8rem;
+    --spacing-smlst: 1.5rem;
+    --spacing-smlr: 2rem;
+    --spacing-sm: 2.5rem;
+    --spacing-base: 3rem;
+    --spacing-bg: 4rem;
+    --spacing-bgr: 5rem;
+    --spacing-bgst: 6rem;
+
+    --spacing-post: 20rem;
+
+    /* max-width */
+    --mw-grid: 120rem;
+    --mw-post: 90rem;
+
+    /* Border Radius */
+    --br-base: 0.4rem;
+    --br-bg: 0.5rem;
+
+    /* Colors */
+    --primary-bg: hsl(0, 2%, 10%);
+    --primary-text: hsl(220, 30%, 96%);
+
+    --clr-black-lt: hsl(0, 5%, 15%);
+    --clr-black: hsl(0, 5%, 10%);
+    --clr-black-drk: hsl(0, 0%, 5%);
+
+    --clr-white: hsl(220, 30%, 96%);
+    --clr-white-dk: hsla(220, 29%, 90%, 0.95);
+
+    --clr-gold-ltr: hsl(51, 100%, 70%);
+    --clr-gold-lt: hsl(51, 100%, 60%);
+    --clr-gold: hsl(51, 100%, 50%);
+    --clr-gold-dk: hsl(51, 100%, 40%);
+    --clr-gold-dkr: hsl(51, 100%, 30%);
+
+    --clr-silver-ltr: hsl(0, 0%, 95%);
+    --clr-silver-lt: hsl(0, 0%, 85%);
+    --clr-silver: hsl(0, 0%, 75%);
+    --clr-silver-dk: hsl(0, 0%, 65%);
+    --clr-silver-dkr: hsl(0, 0%, 55%);
+    --clr-silver-dkst: hsl(0, 0%, 35%);
+
+    --clr-blue-ltst: hsl(237, 100%, 80%);
+    --clr-blue-ltr: hsl(237, 100%, 70%);
+    --clr-blue-lt: hsl(237, 100%, 60%);
+    --clr-blue: hsl(237, 100%, 50%);
+    --clr-blue-dk: hsl(237, 100%, 40%);
+    --clr-blue-dkr: hsl(237, 100%, 30%);
+    --clr-blue-dkst: hsl(237, 100%, 20%);
+}
