@@ -1,0 +1,25 @@
+{% load static %}
+<section class="about-section">
+    <div class="header-container">
+        <h3 class="text-center section-subheadding"> Adicione Sub-Título Aqui</h3>
+        <h1 class="text-center section-heading"> Adicione Título Aqui</h1>
+    </div>
+    <ul class="artist-list">
+        <li class="artist">
+            {% include "templates/main/partials/elements/artist/_artist-profile.html" %}
+            <i class="excerpt">
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. 
+                Obcaecati quod itaque molestias maiores odit aspernatur a asperiores officia quidem 
+                repellendus alias illum facilis, placeat beatae delectus corrupti facere.
+            </i>
+        </li>
+        <li class="artist">
+            {% include "templates/main/partials/elements/artist/_artist-profile.html" %}
+            <i class="excerpt">
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. 
+                Obcaecati quod itaque molestias maiores odit aspernatur a asperiores officia quidem 
+                repellendus alias illum facilis, placeat beatae delectus corrupti facere.
+            </i>
+        </li>
+    </ul>
+</section>
