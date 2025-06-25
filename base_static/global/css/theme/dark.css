@@ -99,6 +99,26 @@ nav li a:hover {
     background-position: 100% 0%; /* slide the gradient to the right */
 }
 
+/* About-section */
+
+.artist-list li {
+    border: 1px solid var(--clr-silver-dkst);
+    box-shadow: 0 8px 16px rgba(233, 229, 229, 0.1);
+}
+
+.artist-list li:hover {
+    box-shadow: 0 12px 24px rgba(233, 229, 229, 0.3);
+}
+
+.about-item {
+    border: 1px solid var(--clr-silver-dkst);
+    box-shadow: 0 8px 16px rgba(233, 229, 229, 0.1);
+}
+
+.about-item:hover {
+    box-shadow: 0 12px 24px rgba(233, 229, 229, 0.3);
+}
+
 /* Header-blog */
 .blog-link {
     color: var(--clr-black);
