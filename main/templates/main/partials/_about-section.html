@@ -8,16 +8,16 @@
         <li class="artist">
             {% include "templates/main/partials/elements/artist/_artist-profile.html" %}
             <i class="excerpt">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. 
-                Obcaecati quod itaque molestias maiores odit aspernatur a asperiores officia quidem 
+                Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                Obcaecati quod itaque molestias maiores odit aspernatur a asperiores officia quidem
                 repellendus alias illum facilis, placeat beatae delectus corrupti facere.
             </i>
         </li>
         <li class="artist">
             {% include "templates/main/partials/elements/artist/_artist-profile.html" %}
             <i class="excerpt">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. 
-                Obcaecati quod itaque molestias maiores odit aspernatur a asperiores officia quidem 
+                Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                Obcaecati quod itaque molestias maiores odit aspernatur a asperiores officia quidem
                 repellendus alias illum facilis, placeat beatae delectus corrupti facere.
             </i>
         </li>
@@ -31,13 +31,52 @@
                     Aut autem nam consectetur nesciunt quod. Blanditiis qui, magni vel hic commodi
                     delectus a cupiditate placeat, enim illum deserunt! Cupiditate, repellat inventore.
                     Obcaecati quod itaque molestias maiores odit aspernatur a asperiores officia quidem
-                    repellendus alias illum facilis, placeat beatae delectus corrupti facere. 
+                    repellendus alias illum facilis, placeat beatae delectus corrupti facere.
                     Aut autem nam consectetur nesciunt quod!
                 </p>
             </div>
-            <img src="https://picsum.photos/600/400/?rand=12" 
-                alt="Estúdio" class="about-image" loading="lazy"
-            >
+
+            <div class="slider">
+
+                <input type="radio" name="radio-btn" id="radio1">
+                <input type="radio" name="radio-btn" id="radio2">
+                <input type="radio" name="radio-btn" id="radio3">
+                <input type="radio" name="radio-btn" id="radio4">
+
+                <div class="slides">
+                    <div class="slide first">
+                        <img src="https://picsum.photos/600/400/?rand=12" 
+                            alt="Estúdio" loading="lazy">
+                    </div>
+                    <div class="slide">
+                        <img src="https://picsum.photos/600/400/?rand=13" 
+                            alt="Estúdio" loading="lazy">
+                    </div>
+                    <div class="slide">
+                        <img src="https://picsum.photos/600/400/?rand=14" 
+                            alt="Estúdio" loading="lazy">
+                    </div>
+                    <div class="slide">
+                        <img src="https://picsum.photos/600/400/?rand=15" 
+                            alt="Estúdio" loading="lazy">
+                    </div>
+
+                    <div class="navigation-auto">
+                        <div class="auto-btn1"></div>
+                        <div class="auto-btn2"></div>
+                        <div class="auto-btn3"></div>
+                        <div class="auto-btn4"></div>
+                    </div>
+
+                </div>
+
+                    <div class="manual-navigation">
+                        <label for="radio1" class="manual-btn"></label>
+                        <label for="radio2" class="manual-btn"></label>
+                        <label for="radio3" class="manual-btn"></label>
+                        <label for="radio4" class="manual-btn"></label>
+                    </div>
+            </div>
         </li>
     </ul>
 </section>
