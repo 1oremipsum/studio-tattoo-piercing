@@ -1,8 +1,8 @@
 {% load static %}
 <section class="about-section">
     <div class="header-container">
-        <h3 class="text-center section-subheadding"> Adicione Sub-Título Aqui</h3>
         <h1 class="text-center section-heading"> Adicione Título Aqui</h1>
+        <h3 class="text-center section-subheadding"> Adicione Sub-Título Aqui</h3>
     </div>
     <ul class="artist-list">
         <li class="artist">
@@ -35,43 +35,7 @@
                     Aut autem nam consectetur nesciunt quod!
                 </p>
             </div>
-            <div class="slider">
-                <input type="radio" name="radio-btn" id="radio1">
-                <input type="radio" name="radio-btn" id="radio2">
-                <input type="radio" name="radio-btn" id="radio3">
-                <input type="radio" name="radio-btn" id="radio4">
-                <div class="slides">
-                    <div class="slide first">
-                        <img src="https://picsum.photos/600/400/?rand=12" 
-                            alt="Estúdio" loading="lazy">
-                    </div>
-                    <div class="slide">
-                        <img src="https://picsum.photos/600/400/?rand=13" 
-                            alt="Estúdio" loading="lazy">
-                    </div>
-                    <div class="slide">
-                        <img src="https://picsum.photos/600/400/?rand=14" 
-                            alt="Estúdio" loading="lazy">
-                    </div>
-                    <div class="slide">
-                        <img src="https://picsum.photos/600/400/?rand=15" 
-                            alt="Estúdio" loading="lazy">
-                    </div>
-
-                    <div class="navigation-auto">
-                        <div class="auto-btn1"></div>
-                        <div class="auto-btn2"></div>
-                        <div class="auto-btn3"></div>
-                        <div class="auto-btn4"></div>
-                    </div>
-                </div>
-                <div class="manual-navigation">
-                    <label for="radio1" class="manual-btn"></label>
-                    <label for="radio2" class="manual-btn"></label>
-                    <label for="radio3" class="manual-btn"></label>
-                    <label for="radio4" class="manual-btn"></label>
-                </div>
-            </div>
+            {% include "templates/main/partials/elements/carousel/slides/_slider-manual-btn.html" %}
         </li>
     </ul>
 </section>
