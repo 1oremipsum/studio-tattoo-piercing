@@ -1,14 +1,94 @@
 {% load static %}
-<footer class="footer section-wrapper">
-    <div class="section-content-wide">
-      <div class="section-gap">
-        <div class="center">
-          <a href="#"> © {% now "Y" %} Studio Tattoo & Piercing - Todos os direitos reservados. </a>
-        </div>
+<footer class="footer">
+  <div class="footer-content">
+    <div class="footer-contacts">
+      <div class="logo">
+        <h3>LOGO</h3>
+      </div>
+      <p>© {% now "Y" %} Studio Tattoo & Piercing</p>
+
+      <div class="footer-social-media">
+        {% include "templates/main/partials/elements/buttons/_instagram.html" %}
+        {% include "templates/main/partials/elements/buttons/_facebook.html" %}
+        {% include "templates/main/partials/elements/buttons/_whatsapp.html" %}
       </div>
     </div>
-  <script src="https://unpkg.com/swiper@8/swiper-bundle.min.js"></script>
-  <script type="text/javascript" src="{% static 'global/js/toggle-button.js' %}"></script>
-  <script type="text/javascript" src="{% static 'global/js/swiper-bundle.js' %}"></script>
-  <script type="text/javascript" src="{% static 'global/js/auto-slide-change.js' %}"></script>
+
+    <ul class="footer-list">
+      <li>
+        <a class="footer-link" href="#"><h3>Blog</h3></a>
+      </li>
+      <li>
+        <a class="footer-link" href="#"><span>Categoria</span></a>
+      </li>
+      <li>
+        <a class="footer-link" href="#"><span>Categoria</span></a>
+      </li>
+      <li>
+        <a class="footer-link" href="#"><span>Categoria</span></a>
+      </li>
+      <li>
+        <a class="footer-link" href="#"><span>Categoria</span></a>
+      </li>
+    </ul>
+
+    <ul class="footer-list">
+      <li>
+        <a class="footer-link" href="#"><h3>Galeria</h3></a>
+      </li>
+      <li>
+        <a class="footer-link" href="#"><span>Estilo</span></a>
+      </li>
+      <li>
+        <a class="footer-link" href="#"><span>Estilo</span></a>
+      </li>
+      <li>
+        <a class="footer-link" href="#"><span>Estilo</span></a>
+      </li>
+      <li>
+        <a class="footer-link" href="#"><span>Estilo</span></a>
+      </li>
+    </ul>
+
+    <ul class="footer-list">
+      <li>
+        <a class="footer-link" href="#"><h3>Serviços</h3></a>
+      </li>
+      <li>
+        <a class="footer-link" href="#"><span>Serviço</span></a>
+      </li>
+      <li>
+        <a class="footer-link" href="#"><span>Serviço</span></a>
+      </li>
+      <li>
+        <a class="footer-link" href="#"><span>Serviço</span></a>
+      </li>
+      <li>
+        <a class="footer-link" href="#"><span>Serviço</span></a>
+      </li>
+    </ul>
+
+    <ul class="footer-list">
+      <li>
+        <a class="footer-link" href="#"><h3>Sobre Nós</h3></a>
+      </li>
+      <li>
+        <a class="footer-link" href="#"><span>Sobre</span></a>
+      </li>
+      <li>
+        <a class="footer-link" href="#"><span>Sobre</span></a>
+      </li>
+      <li>
+        <a class="footer-link" href="#"><span>Sobre</span></a>
+      </li>
+      <li>
+        <a class="footer-link" href="#"><span>Sobre</span></a>
+      </li>
+    </ul>
+
+  </div>
 </footer>
+<script src="https://unpkg.com/swiper@8/swiper-bundle.min.js"></script>
+<script type="text/javascript" src="{% static 'global/js/toggle-button.js' %}"></script>
+<script type="text/javascript" src="{% static 'global/js/swiper-bundle.js' %}"></script>
+<script type="text/javascript" src="{% static 'global/js/auto-slide-change.js' %}"></script>
