@@ -34,7 +34,10 @@ header {
 
 .header.section-wrapper.base {
     background-color: var(--clr-black-drk);
-    box-shadow: 0 2px 6px var(--clr-silver);
+}
+
+.logo a > h3 {
+    color: var(--clr-white);
 }
 
 nav li a{
@@ -300,4 +303,17 @@ nav li a:hover {
 
 .footer a:hover {
     color: var(--clr-blue-ltst);
+}
+
+/*Base header*/
+
+@media (max-width: 768px) {
+  nav > ul {
+    background: linear-gradient(
+      180deg,
+      var(--clr-black-drk) 25%,
+      var(--clr-black) 70%,
+      var(--clr-black-lt)
+    );
+  }
 }
