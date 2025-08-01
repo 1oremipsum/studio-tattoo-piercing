@@ -1,6 +1,7 @@
 <header class="header section-wrapper gallery">
     <h5 class="gallery-title mrg-micro">
-        <i class="fa-regular fa-images"></i> {{ gallery_setup.title }}
+        <i class="fa-regular fa-images"></i> 
+        {{ gallery_setup.title }}
     </h5>
 
     {% if gallery_setup.show_search %}
@@ -31,28 +32,34 @@
     {% endif %}
 
     {% if gallery_setup.show_menu %}
-    <nav class="menu gallery">
-        <i class="fa-solid fa-filter"></i>
-        <p>Filtros<p>
-        <ul class="menu-items on-left">
-            <li class="menu-item">
-                {% for category in category_objs %}
-                    <a class="btn menu-link"  href="{% url 'gallery:search' %}?category={{ category.slug }}{% if search_value %}&search={{ search_value }}{% endif %}{% if selected_style %}&style={{ selected_style }}{% endif %}" >
-                        {{ category.name }}
-                    </a>
-                {% endfor %}
-                <a class="btn menu-link" href="{{ gallery_setup.menu.first.url_or_path }}">
-                    Todos
-                </a>
-            </li>
-            <li class="menu-item">
-                {% for style in style_objs %}
-                    <a class="btn menu-link" href="{% url 'gallery:search' %}?style={{ style.slug }}{% if search_value %}&search={{ search_value }}{% endif %}{% if selected_category %}&category={{ selected_category }}{% endif %}">
-                        {{ style.name }}
-                    </a>
-                {% endfor %}
-            </li>
-        </ul>
+    <nav class="menu gallery-filters">
+        <div class="filter-dropdown-wrapper">
+            <button id="filter-toggle-btn" class="menu-gallery-toggle-btn">
+                <span>Filtrar<span>
+                <i class="fa-solid fa-chevron-down rotating-icon"></i>
+            </button>
+            <nav id="filter-gallery" class="dropdown-filter-gallery">
+                <h5>Estilos de Tatuagem</h5>
+                <ul>
+                    <li><a href="#">Lorem Ipsum</a></li>
+                    <li><a href="#">Lorem Ipsum</a></li>
+                    <li><a href="#">Lorem Ipsum</a></li>
+                    <li><a href="#">Lorem Ipsum</a></li>
+                    <li><a href="#">Lorem Ipsum</a></li>
+                    <li><a href="#">Lorem Ipsum</a></li>
+                </ul>
+                <div class="line"></div>
+                <h5>Tipos de Piercing</h5>
+                <ul>
+                    <li><a href="#">Lorem Ipsum</a></li>
+                    <li><a href="#">Lorem Ipsum</a></li>
+                    <li><a href="#">Lorem Ipsum</a></li>
+                    <li><a href="#">Lorem Ipsum</a></li>
+                    <li><a href="#">Lorem Ipsum</a></li>
+                    <li><a href="#">Lorem Ipsum</a></li>
+                </ul>
+            </nav>
+        </div>
     </nav>
     {% endif %}
 </header>

@@ -33,7 +33,15 @@ header {
 }
 
 .header.section-wrapper.base {
-    background-color: var(--clr-black-drk);
+   background-color: var(--clr-black-drk);
+}
+
+#bar-icon {
+    color: var(--clr-white);
+}
+
+#close-icon {
+    color: var(--clr-white);
 }
 
 .logo a > h3 {
@@ -122,6 +130,14 @@ nav li a:hover {
     box-shadow: 0 12px 24px rgba(233, 229, 229, 0.3);
 }
 
+.about-section .artist .button:hover {
+  box-shadow:  0 2px 4px var(--clr-silver);
+}
+
+.manual-btn {
+  border: 2px solid var(--clr-silver);
+}
+
 /* Reviews-section */
 
 .single {
@@ -143,10 +159,18 @@ nav li a:hover {
 }
 
 .header.section-wrapper.blog{
-    background-color: var(--clr-white-dk);
     border-top: 1px solid var(--clr-silver);
     border-bottom: 1px solid var(--clr-silver);
     box-shadow: 0 2px 12px var(--clr-white);
+}
+
+.header.section-wrapper.blog{
+    background: linear-gradient(
+        180deg, 
+        var(--clr-silver-dk) 0%,
+        var(--clr-silver-lt) 50%,
+        var(--clr-silver-ltr) 100%
+    );
 }
 
 .menu-link{
@@ -177,6 +201,7 @@ nav li a:hover {
 .search-input {
     border: 0;
     box-shadow:  2px 4px 6px var(--clr-silver-dkst);
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
 }
 
 .search-input::placeholder {
@@ -201,6 +226,11 @@ nav li a:hover {
 
 .search-content:focus-within .search-btn {
     color: var(--clr-blue-ltr);
+}
+
+.search-content:focus-within {
+  border-top: 1px solid var(--clr-silver-ltr);
+  border-left: 1px solid var(--clr-silver-ltr);
 }
 
 /* Post Meta */
@@ -229,11 +259,19 @@ nav li a:hover {
 }
 
 /*Header Gallery*/
+
 .header.section-wrapper.gallery {
-    background-color: var(--clr-white-dk);
-    border-top: 1px solid var(--clr-silver);
     border-bottom: 1px solid var(--clr-silver);
     box-shadow: 0 2px 12px var(--clr-white);
+}
+
+.header.section-wrapper.gallery {
+    background: linear-gradient(
+        180deg, 
+        var(--clr-silver-dk) 0%,
+        var(--clr-silver-lt) 50%,
+        var(--clr-silver-ltr) 100%
+    );
 }
 
 .gallery-title{
@@ -250,10 +288,6 @@ nav li a:hover {
     box-shadow:  2px 4px 6px var(--clr-black-lt);
 }
 
-.gallery-description {
-    color: var(--clr-black);
-}
-
 .gallery-link {
     color: var(--clr-black);
 }
@@ -262,37 +296,83 @@ nav li a:hover {
     color: var(--clr-silver-dkr);
 }
 
-.menu.gallery > i{
+.menu.gallery-filters > i{
     color: var(--clr-silver-dkst);
 }
 
-.menu.gallery > p{
+.menu.gallery-filters > p{
     color: var(--clr-silver-dkst);
 }
 
-.btn-link {
-    color: var(--clr-black);
-}
-
-.btn.menu-link{
-    color: var(--clr-silver-ltr);
-    border: 1px solid var(--clr-silver-dkst);
+.show-more-icon {
+    color: var(--clr-silver);
     background-color: var(--clr-black);
 }
 
-.btn.menu-link:hover {
+.show-more-icon:hover{
+    color: var(--clr-white);
+}
+
+.show-more-icon:active {
+    background-color: var(--clr-black-lt);
+}
+
+.menu-gallery-toggle-btn {
+  background-color: var(--clr-black-lt);
+}
+
+.menu-gallery-toggle-btn > i {
+  color: var(--clr-white);
+}
+
+.menu-gallery-toggle-btn > span {
+  color: var(--clr-white);
+}
+
+.menu-gallery-toggle-btn:hover {
+  background-color: var(--clr-black-drk);
+}
+
+.filter-dropdown-wrapper.active .menu-gallery-toggle-btn {
+    background-color: var(--clr-black-drk);
+}
+
+.dropdown-filter-gallery li {
+  color: var(--clr-white);
+  font-size: var(--fs-smlr);
+}
+
+.dropdown-filter-gallery {
+    background-color: var(--clr-black);
+    box-shadow: 0 8px 12px 0 rgba(255, 255, 255, 0.5);
+}
+
+.dropdown-filter-gallery h5 {
+    color: var(--clr-white);
+}
+
+.dropdown-filter-gallery .line {
     background-color: var(--clr-silver-dkst);
 }
 
-.menu-items.on-right li a{
-    color: var(--clr-silver-dkst);    
+.dropdown-filter-gallery li {
+    background-color: var(--clr-black-lt);
 }
 
-.menu-items.on-right li a:hover{
-    color: var(--clr-silver-dkr);    
+.dropdown-filter-gallery li a {
+    color: var(--clr-white);
+}
+
+.dropdown-filter-gallery li a:hover {
+  color: var(--clr-white);
+}
+
+.dropdown-filter-gallery li:hover {
+  background-color: var(--clr-black-drk);
 }
 
 /* Footer */
+
 .footer {
     background-color: var(--clr-black-drk);
 }
@@ -305,6 +385,10 @@ nav li a:hover {
     color: var(--clr-blue-ltst);
 }
 
+.footer-list .footer-link > span {
+    color: var(--clr-silver);
+}
+
 /*Base header*/
 
 @media (max-width: 768px) {
@@ -315,5 +399,6 @@ nav li a:hover {
       var(--clr-black) 70%,
       var(--clr-black-lt)
     );
+    box-shadow: 0 2px 6px var(--clr-silver);
   }
 }
