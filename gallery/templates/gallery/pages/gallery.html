@@ -1,9 +1,13 @@
 {% extends "global/base.html" %}
 {% block content %}
     {% include "templates/gallery/partials/_header-gallery.html" %}
-    <div class="gallery-wrapper">
-        {% for img in images_objs %}
-        {% include "templates/gallery/partials/_image-card.html" with i=forloop.counter0 %}
-        {% endfor %}
-    </div>    
+    {% if images_objs %}
+        <div class="gallery-wrapper">
+            {% for img in images_objs %}
+                {% include "templates/gallery/partials/_image-card.html" with i=forloop.counter0 %}
+            {% endfor %}
+        </div>
+    {% else %}
+        {% include "gallery/partials/_not_found.html" %}
+    {% endif %}
 {% endblock content %}

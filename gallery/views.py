@@ -3,7 +3,6 @@ from django.views.generic.list import ListView
 from django.db.models.query import QuerySet
 from sitesetup.models import SiteSetup
 from django.db.models import Q
-from typing import Any
 
 from django.shortcuts import get_object_or_404, redirect
 
@@ -21,7 +20,8 @@ class ImagesListView(ListView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['category_objs'] = ImageCategory.objects.all()
-        context['style_objs'] = ImageArtStyle.objects.all()
+        context['tattoo_styles'] = ImageArtStyle.objects.filter(category=1).order_by('name')
+        context['piercing_styles'] = ImageArtStyle.objects.filter(category=2).order_by('name')
         context['site_title'] = get_object_or_404(SiteSetup, id=3).title
         return context
 
@@ -76,7 +76,6 @@ class SearchListView(ImagesListView):
             queryset = queryset.filter(category=category)
 
         return queryset
-        
     
     def get_context_data(self, **kwargs):
         ctx = super().get_context_data(**kwargs)

@@ -86,6 +86,9 @@ class ImageArtStyle(models.Model):
     description = models.TextField(verbose_name='Descrição')
 
     def save(self, *args, **kwargs):
+        if self.slug:
+            self.slug = self.slug.strip()
+
         if not self.slug:
             self.slug = slugify_new(self.name, 4)
         return super().save(*args, **kwargs)

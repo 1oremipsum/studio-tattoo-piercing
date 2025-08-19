@@ -39,25 +39,43 @@
                 <i class="fa-solid fa-chevron-down rotating-icon"></i>
             </button>
             <nav id="filter-gallery" class="dropdown-filter-gallery">
+            {% if tattoo_styles %}
                 <h5>Estilos de Tatuagem</h5>
                 <ul>
-                    <li><a href="#">Lorem Ipsum</a></li>
-                    <li><a href="#">Lorem Ipsum</a></li>
-                    <li><a href="#">Lorem Ipsum</a></li>
-                    <li><a href="#">Lorem Ipsum</a></li>
-                    <li><a href="#">Lorem Ipsum</a></li>
-                    <li><a href="#">Lorem Ipsum</a></li>
+                    {% for style in tattoo_styles %}
+                        <li class="{% if style.slug == selected_style %}active{% endif %}">
+                            {% if style.slug == selected_style %}
+                                <a href="{% url 'gallery:search' %}{% if search_value %}?search={{ search_value }}{% endif %}{% if selected_category %}{% if search_value %}&{% else %}?{% endif %}category={{ selected_category }}{% endif %}">
+                                    {{ style.name }}
+                                </a>
+                            {% else %}
+                                <a href="{% url 'gallery:search' %}?style={{ style.slug }}{% if search_value %}&search={{ search_value }}{% endif %}{% if selected_category %}&category={{ selected_category }}{% endif %}">
+                                    {{ style.name }}
+                                </a>
+                            {% endif %}
+                        </li>
+                    {% endfor %}
                 </ul>
+            {% endif %}
+            {% if piercing_styles %}
                 <div class="line"></div>
                 <h5>Tipos de Piercing</h5>
                 <ul>
-                    <li><a href="#">Lorem Ipsum</a></li>
-                    <li><a href="#">Lorem Ipsum</a></li>
-                    <li><a href="#">Lorem Ipsum</a></li>
-                    <li><a href="#">Lorem Ipsum</a></li>
-                    <li><a href="#">Lorem Ipsum</a></li>
-                    <li><a href="#">Lorem Ipsum</a></li>
+                    {% for style in piercing_styles %}
+                        <li class="{% if style.slug == selected_style %}active{% endif %}">
+                            {% if style.slug == selected_style %}
+                                <a href="{% url 'gallery:search' %}{% if search_value %}?search={{ search_value }}{% endif %}{% if selected_category %}{% if search_value %}&{% else %}?{% endif %}category={{ selected_category }}{% endif %}">
+                                    {{ style.name }}
+                                </a>
+                            {% else %}  
+                                <a href="{% url 'gallery:search' %}?style={{ style.slug }}{% if search_value %}&search={{ search_value }}{% endif %}{% if selected_category %}&category={{ selected_category }}{% endif %}">
+                                    {{ style.name }}
+                                </a>
+                            {% endif %}
+                        </li>
+                    {% endfor %}
                 </ul>
+            {% endif %}
             </nav>
         </div>
     </nav>

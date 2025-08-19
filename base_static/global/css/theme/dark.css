@@ -371,6 +371,10 @@ nav li a:hover {
   background-color: var(--clr-black-drk);
 }
 
+.dropdown-filter-gallery li.active {
+    background-color: var(--clr-black-drk); 
+}
+
 /* Footer */
 
 .footer {
