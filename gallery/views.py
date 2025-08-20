@@ -1,6 +1,5 @@
 from gallery.models import Image, ImageCategory, ImageArtStyle
 from django.views.generic.list import ListView
-from django.db.models.query import QuerySet
 from sitesetup.models import SiteSetup
 from django.db.models import Q
 

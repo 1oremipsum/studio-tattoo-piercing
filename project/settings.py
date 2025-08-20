@@ -77,6 +77,7 @@ TEMPLATES = [
                 'django.contrib.messages.context_processors.messages',
                 'sitesetup.context_processors.blog_setup',
                 'sitesetup.context_processors.gallery_setup',
+                'sitesetup.context_processors.main_setup',
             ],
         },
     },
