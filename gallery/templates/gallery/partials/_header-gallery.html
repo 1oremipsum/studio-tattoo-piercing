@@ -39,43 +39,93 @@
                 <i class="fa-solid fa-chevron-down rotating-icon"></i>
             </button>
             <nav id="filter-gallery" class="dropdown-filter-gallery">
-            {% if tattoo_styles %}
                 <h5>Estilos de Tatuagem</h5>
-                <ul>
-                    {% for style in tattoo_styles %}
-                        <li class="{% if style.slug == selected_style %}active{% endif %}">
-                            {% if style.slug == selected_style %}
-                                <a href="{% url 'gallery:search' %}{% if search_value %}?search={{ search_value }}{% endif %}{% if selected_category %}{% if search_value %}&{% else %}?{% endif %}category={{ selected_category }}{% endif %}">
-                                    {{ style.name }}
+                {% if tattoo_styles %}
+                    <ul>
+                        <li class="{% if tattoo_category.slug == selected_category %}active{% endif %}">
+                            {% if tattoo_category.slug == selected_category %}
+                                <a href="{% url 'gallery:search' %}{% if search_value %}?search={{ search_value }}{% endif %}">
+                                    Todos
                                 </a>
                             {% else %}
-                                <a href="{% url 'gallery:search' %}?style={{ style.slug }}{% if search_value %}&search={{ search_value }}{% endif %}{% if selected_category %}&category={{ selected_category }}{% endif %}">
-                                    {{ style.name }}
+                                <a href="{% url 'gallery:search' %}?category={{ tattoo_category.slug }}{% if search_value %}&search={{ search_value }}{% endif %}">
+                                    Todos
                                 </a>
                             {% endif %}
                         </li>
-                    {% endfor %}
-                </ul>
-            {% endif %}
-            {% if piercing_styles %}
+                        {% for style in tattoo_styles %}
+                            <li class="{% if style.slug == selected_style %}active{% endif %}">
+                                {% if style.slug == selected_style %}
+                                    <a href="{% url 'gallery:search' %}{% if search_value %}?search={{ search_value }}{% endif %}{% if selected_category %}{% if search_value %}&{% else %}?{% endif %}category={{ selected_category }}{% endif %}">
+                                        {{ style.name }}
+                                    </a>
+                                {% else %}
+                                    <a href="{% url 'gallery:search' %}?style={{ style.slug }}{% if search_value %}&search={{ search_value }}{% endif %}{% if selected_category %}&category={{ selected_category }}{% endif %}">
+                                        {{ style.name }}
+                                    </a>
+                                {% endif %}
+                            </li>
+                        {% endfor %}
+                    </ul>
+                {% else %}
+                    <ul>
+                        <li class="{% if selected_category %}active{% endif %}">
+                            {% if tattoo_category.slug == selected_category %}
+                                <a href="{% url 'gallery:search' %}{% if search_value %}?search={{ search_value }}{% endif %}">
+                                    Todos
+                                </a>
+                            {% else %}
+                                <a href="{% url 'gallery:search' %}?category={{ tattoo_category.slug }}{% if search_value %}&search={{ search_value }}{% endif %}">
+                                    Todos
+                                </a>
+                            {% endif %}
+                        </li>
+                    </ul>
+                {% endif %}
                 <div class="line"></div>
                 <h5>Tipos de Piercing</h5>
-                <ul>
-                    {% for style in piercing_styles %}
-                        <li class="{% if style.slug == selected_style %}active{% endif %}">
-                            {% if style.slug == selected_style %}
-                                <a href="{% url 'gallery:search' %}{% if search_value %}?search={{ search_value }}{% endif %}{% if selected_category %}{% if search_value %}&{% else %}?{% endif %}category={{ selected_category }}{% endif %}">
-                                    {{ style.name }}
+                {% if piercing_styles %}
+                    <ul>
+                        <li class="{% if selected_category %}active{% endif %}">
+                            {% if piercing_category.slug == selected_category %}
+                                <a href="{% url 'gallery:search' %}{% if search_value %}?search={{ search_value }}{% endif %}">
+                                    Todos
                                 </a>
-                            {% else %}  
-                                <a href="{% url 'gallery:search' %}?style={{ style.slug }}{% if search_value %}&search={{ search_value }}{% endif %}{% if selected_category %}&category={{ selected_category }}{% endif %}">
-                                    {{ style.name }}
+                            {% else %}
+                                <a href="{% url 'gallery:search' %}?category={{ piercing_category.slug }}{% if search_value %}&search={{ search_value }}{% endif %}">
+                                    Todos
                                 </a>
                             {% endif %}
                         </li>
-                    {% endfor %}
-                </ul>
-            {% endif %}
+                        {% for style in piercing_styles %}
+                            <li class="{% if style.slug == selected_style %}active{% endif %}">
+                                {% if style.slug == selected_style %}
+                                    <a href="{% url 'gallery:search' %}{% if search_value %}?search={{ search_value }}{% endif %}{% if selected_category %}{% if search_value %}&{% else %}?{% endif %}category={{ selected_category }}{% endif %}">
+                                        {{ style.name }}
+                                    </a>
+                                {% else %}  
+                                    <a href="{% url 'gallery:search' %}?style={{ style.slug }}{% if search_value %}&search={{ search_value }}{% endif %}{% if selected_category %}&category={{ selected_category }}{% endif %}">
+                                        {{ style.name }}
+                                    </a>
+                                {% endif %}
+                            </li>
+                        {% endfor %}
+                    </ul>
+                {% else %}
+                    <ul>
+                        <li class="{% if piercing_category.slug == selected_category %}active{% endif %}">
+                            {% if piercing_category.slug == selected_category %}
+                                <a href="{% url 'gallery:search' %}{% if search_value %}?search={{ search_value }}{% endif %}">
+                                    Todos
+                                </a>
+                            {% else %}
+                                <a href="{% url 'gallery:search' %}?category={{ piercing_category.slug }}{% if search_value %}&search={{ search_value }}{% endif %}">
+                                    Todos
+                                </a>
+                            {% endif %}
+                        </li>
+                    </ul>
+                {% endif %}
             </nav>
         </div>
     </nav>

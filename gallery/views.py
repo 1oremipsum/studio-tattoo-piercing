@@ -18,7 +18,8 @@ class ImagesListView(ListView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['category_objs'] = ImageCategory.objects.all()
+        context['tattoo_category'] = ImageCategory.objects.get(id=1)
+        context['piercing_category'] = ImageCategory.objects.get(id=2)
         context['tattoo_styles'] = ImageArtStyle.objects.filter(category=1).order_by('name')
         context['piercing_styles'] = ImageArtStyle.objects.filter(category=2).order_by('name')
         context['site_title'] = get_object_or_404(SiteSetup, id=3).title
